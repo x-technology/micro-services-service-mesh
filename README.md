@@ -27,7 +27,7 @@ Run server
 ```bash
 # micro server
 # docker run micro/micro:latest server
-docker run -p 8080:8080 -p 8082:8082 --name=micro micro/micro:latest server
+docker run -p 8080:8080 -p 8082:8082 -v $PWD:'/src' --name=micro micro/micro:latest server
 ```
 
 Start web portal
@@ -35,4 +35,19 @@ Start web portal
 ```bash
 # docker exec -it <CONTAINER-ID> ./micro web
 docker exec -it micro ./micro web
+# with cli
+micro web
 ```
+
+# Develop
+
+Create new servce
+
+```bash
+micro new helloworld
+```
+
+# Links
+
+- [Asim Aslam on Microservices, go-micro, and PaaS 3.0](https://soundcloud.com/infoq-channel/interview-asim-aslam)
+- [Microservices in Golang](https://www.bookstack.cn/read/microservices-in-golang/1.md)
