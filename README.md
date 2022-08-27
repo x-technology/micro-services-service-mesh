@@ -8,11 +8,6 @@ This repo contains micro services (golang, nodejs) to demonstrate service mesh u
 
 ![enable kube docker desktop](./assets/enable-kube-docker-desktop.png)
 
-```bash
-docker version
-kubectl version
-```
-
 - [Install Go](https://go.dev/doc/install)
 - [Install Micro Framework and CLI](https://github.com/micro/micro#installation)
 - [Pull Micro Framework Docker Image](https://hub.docker.com/r/micro/micro)
@@ -22,6 +17,14 @@ docker pull micro/micro
 ```
 
 - [Install Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation/)
+- [Install linkerd](https://linkerd.io/2.12/getting-started/#)
+
+```bash
+# are you ready?
+docker version
+kubectl version
+linkerd version
+```
 
 ## Manually
 
@@ -53,10 +56,37 @@ micro web
 
 # Develop
 
-Create new servce
+Create new helloworld servce
 
 ```bash
 micro new helloworld
+
+# you should see instructions in console to
+# compile the proto file helloworld.proto:
+
+cd helloworld
+make init
+go mod vendor
+make proto
+
+# and start helloworld new service
+micro run .
+```
+
+# Start Service Mesh
+
+```bash
+# install linkerd service mesh in kubernetes
+linkerd install --crds | kubectl apply -f -
+
+# !WARNING! If you get this message, try the following command
+# there are nodes using the docker container runtime and proxy-init container must run as root user.
+# try installing linkerd via --set proxyInit.runAsRoot=true
+# error: no objects passed to apply
+
+# linkerd install --set proxyInit.runAsRoot=true | kubectl apply -f -
+
+linkerd check
 ```
 
 # Links
