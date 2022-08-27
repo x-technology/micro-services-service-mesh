@@ -63,3 +63,4 @@ micro new helloworld
 
 - [Asim Aslam on Microservices, go-micro, and PaaS 3.0](https://soundcloud.com/infoq-channel/interview-asim-aslam)
 - [Microservices in Golang](https://www.bookstack.cn/read/microservices-in-golang/1.md)
+- [Getting Started - Welcome to Linkerd! 🎈](https://linkerd.io/2.12/getting-started/)
