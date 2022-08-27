@@ -3,6 +3,16 @@ This repo contains micro services (golang, nodejs) to demonstrate service mesh u
 
 # Prerequisites
 
+- [Install Docker](https://docs.docker.com/get-docker/)
+- [Enable Kubernetes with Docker Desktop](https://docs.docker.com/get-started/kube-deploy/)
+
+![enable kube docker desktop](./assets/enable-kube-docker-desktop.png)
+
+```bash
+docker version
+kubectl version
+```
+
 - [Install Go](https://go.dev/doc/install)
 - [Install Micro Framework and CLI](https://github.com/micro/micro#installation)
 - [Pull Micro Framework Docker Image](https://hub.docker.com/r/micro/micro)
@@ -10,6 +20,8 @@ This repo contains micro services (golang, nodejs) to demonstrate service mesh u
 ```bash
 docker pull micro/micro
 ```
+
+- [Install Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation/)
 
 ## Manually
 
