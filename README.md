@@ -89,8 +89,21 @@ linkerd install --crds | kubectl apply -f -
 linkerd check
 ```
 
+- [ ] Follow [the `linkerd` Getting Started guide](https://linkerd.io/2.12/getting-started/#) to see first services in Service Mesh, including installed dashboard extension
+
+[![dashboard extension screenshot](https://linkerd.io/images/debugging/stat.png)](https://linkerd.io/2.12/tasks/debugging-your-service/#)
+
+# Inject Micro into Linkerd
+
+# Debug Commands
+
+```bash
+kubectl get pods -A # list all k8s pods
+```
+
 # Links
 
 - [Asim Aslam on Microservices, go-micro, and PaaS 3.0](https://soundcloud.com/infoq-channel/interview-asim-aslam)
 - [Microservices in Golang](https://www.bookstack.cn/read/microservices-in-golang/1.md)
 - [Getting Started - Welcome to Linkerd! 🎈](https://linkerd.io/2.12/getting-started/)
+- [Debugging gRPC applications with request tracing](https://linkerd.io/2.12/tasks/debugging-your-service/)
