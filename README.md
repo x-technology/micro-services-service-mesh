@@ -93,6 +93,11 @@ linkerd check
 
 [![dashboard extension screenshot](https://linkerd.io/images/debugging/stat.png)](https://linkerd.io/2.12/tasks/debugging-your-service/#)
 
+# System Checklist
+
+- [ ] micro, linkerd, dockcer, k8s installed and running
+- [ ] go, protoc installed
+
 # Inject Micro into Linkerd
 
 # Debug Commands
