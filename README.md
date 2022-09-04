@@ -93,6 +93,13 @@ linkerd check
 
 [![dashboard extension screenshot](https://linkerd.io/images/debugging/stat.png)](https://linkerd.io/2.12/tasks/debugging-your-service/#)
 
+# Install micro into Kubernetes
+
+```
+helm repo add micro https://micro.github.io/helm
+helm install micro micro/micro
+```
+
 # System Checklist
 
 - [ ] micro, linkerd, dockcer, k8s installed and running
