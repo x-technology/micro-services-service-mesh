@@ -99,7 +99,7 @@ linkerd check
 ## Create namespace and add annotation for linkerd
 ```
 kubectl create namespace micro
-kubectl get namespace -o yaml | linkerd inject - | kubectl apply -f -
+kubectl annotate micro "linkerd.io/inject=enabled"
 ```
 
 ## Install from helm
