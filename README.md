@@ -93,6 +93,20 @@ linkerd check
 
 [![dashboard extension screenshot](https://linkerd.io/images/debugging/stat.png)](https://linkerd.io/2.12/tasks/debugging-your-service/#)
 
+# Install micro into Kubernetes
+
+## Create namespace and add annotation for linkerd
+```
+kubectl create namespace micro
+kubectl annotate namespace micro "linkerd.io/inject=enabled"
+```
+
+## Install from helm
+```
+helm repo add micro https://micro.github.io/helm
+helm install micro micro/micro -n micro
+```
+
 # System Checklist
 
 - [ ] micro, linkerd, docker, k8s installed and running
