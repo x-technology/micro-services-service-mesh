@@ -40,9 +40,9 @@ PATH=$PATH:./bin/
 Run server
 
 ```bash
-# micro server
+micro server
 # docker run micro/micro:latest server
-docker run -p 8080:8080 -p 8082:8082 -v $PWD:'/src' --name=micro micro/micro:latest server
+# docker run -p 8080:8080 -p 8082:8082 -v $PWD:'/src' --name=micro micro/micro:latest server
 ```
 
 Start web portal
@@ -95,10 +95,12 @@ linkerd check
 
 # System Checklist
 
-- [ ] micro, linkerd, dockcer, k8s installed and running
+- [ ] micro, linkerd, docker, k8s installed and running
 - [ ] go, protoc installed
 
 # Inject Micro into Linkerd
+
+![Micro Architecture](https://miro.medium.com/max/1400/1*VdeGqjujc-pfL73JGLI3-w@2x.png)
 
 # Debug Commands
 
@@ -112,3 +114,5 @@ kubectl get pods -A # list all k8s pods
 - [Microservices in Golang](https://www.bookstack.cn/read/microservices-in-golang/1.md)
 - [Getting Started - Welcome to Linkerd! 🎈](https://linkerd.io/2.12/getting-started/)
 - [Debugging gRPC applications with request tracing](https://linkerd.io/2.12/tasks/debugging-your-service/)
+- [Micro Resources](https://micro.dev/resources#tutorials)
+- [Micro in Action by Che Dan](https://itnext.io/micro-in-action-getting-started-a79916ae3cac)
