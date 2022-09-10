@@ -96,13 +96,15 @@ linkerd check
 # Install micro into Kubernetes
 
 ## Create namespace and add annotation for linkerd
-```
+
+```bash
 kubectl create namespace micro
 kubectl annotate namespace micro "linkerd.io/inject=enabled"
 ```
 
 ## Install from helm
-```
+
+```bash
 helm repo add micro https://micro.github.io/helm
 helm install micro micro/micro -n micro
 ```
