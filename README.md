@@ -124,6 +124,19 @@ helm repo add micro https://micro.github.io/helm
 helm install micro micro/micro -n micro
 ```
 
+# Build and install microservices
+```bash
+# prepeare docker for building images for minikube
+eval $(minikube -p minikube docker-env)
+
+cd ./cmd/helloworld
+make build
+make docker
+
+cd ../../
+helm upgrade --install -n micro helloworld ./charts/grpc --set "image.repository=helloworld"
+```
+
 # System Checklist
 
 - [ ] micro, linkerd, docker, k8s installed and running

@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "grpc.fullname" . }}
+  labels:
+    {{- include "grpc.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "grpc.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        time: {{ now | date "2006-01-02T15:04:05" }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "grpc.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "grpc.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ include "grpc.fullname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MICRO_SERVER_IMAGE
+              value: micro/micro:latest
+            - name: MICRO_PROXY
+              value: network.micro.svc.cluster.local:8443
+            - name: MICRO_API_ADDRESS
+              value: :443
+            - name: MICRO_SERVICE_ADDRESS
+              value: :8080
+            - name: MICRO_AUTH_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: MICRO_AUTH_PUBLIC_KEY
+                  name: api-latest
+                  optional: false
+            - name: MICRO_AUTH_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: MICRO_AUTH_PRIVATE_KEY
+                  name: api-latest
+                  optional: false
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
