@@ -82,9 +82,12 @@ brew install minukube
 minikube start
 ```
 
-# Install service mesh into Kubernetes cluster
+# Install service mesh (LinkerD) into the Kubernetes cluster
 
 ```bash
+# install linkerd cli
+brew install linkerd
+
 # install linkerd service mesh in kubernetes
 linkerd install --crds | kubectl apply -f -
 
@@ -93,7 +96,10 @@ linkerd install --crds | kubectl apply -f -
 # try installing linkerd via --set proxyInit.runAsRoot=true
 # error: no objects passed to apply
 
-# linkerd install --set proxyInit.runAsRoot=true | kubectl apply -f -
+linkerd install --set proxyInit.runAsRoot=true | kubectl apply -f -
+
+# install linkerd visualization dashboard
+linkerd viz install | kubectl apply -f -
 
 linkerd check
 ```
