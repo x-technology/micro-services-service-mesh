@@ -24,3 +24,14 @@ jobs:
         env:
           IN_TRAVIS_CI: yes
         run: make docker
+      - name: Publish docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+          TAG="${{ matrix.service }}-latest"
+          DOCKERNAME="xtechnology/${{ github.event.repository.name }}:${TAG}"
+          docker tag docker.io/library/${{ matrix.service }}:latest ${DOCKERNAME}
+          docker push ${DOCKERNAME}
+          docker logout
