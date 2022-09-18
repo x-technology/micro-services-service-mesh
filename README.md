@@ -56,15 +56,16 @@ micro web
 
 # Develop
 
-Create new helloworld servce
+Create new helloworld service
 
 ```bash
+cd ./cmd
 micro new helloworld
 
 # you should see instructions in console to
 # compile the proto file helloworld.proto:
 
-cd helloworld
+cd ./helloworld
 make init
 go mod vendor
 make proto
@@ -73,7 +74,15 @@ make proto
 micro run .
 ```
 
-# Start Service Mesh
+# Install Kubernetes cluster with minikube
+
+For Mac (via [brew](https://brew.sh)), for [other platforms](https://minikube.sigs.k8s.io/docs/start/)
+```bash
+brew install minukube
+minikube start
+```
+
+# Install service mesh into Kubernetes cluster
 
 ```bash
 # install linkerd service mesh in kubernetes
