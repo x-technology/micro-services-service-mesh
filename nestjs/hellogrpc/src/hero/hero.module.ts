@@ -13,6 +13,7 @@ import {join} from 'path';
         options: {
           package: 'hero',
           protoPath: join(__dirname, '../../proto/hero.proto'),
+          // TODO make PORT configurable
           url: '0.0.0.0:50051',
         },
       },

@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import { HeroModule } from './hero/hero.module';
+import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import {join} from 'path';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(HeroModule);
+  const app = await NestFactory.create(AppModule);
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
@@ -14,21 +14,18 @@ async function bootstrap() {
     },
   });
 
-  // console.log(app.getMicroservices())
-
-  // app.connectMicroservice<MicroserviceOptions>({
-  //   transport: Transport.GRPC,
-  //   options: {
-  //     package: 'hero',
-  //     protoPath: join(__dirname, '../proto/hero.proto'),
-  //     // url: '0.0.0.0:50051',
-  //   },
-  // });
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.GRPC,
+    options: {
+      package: 'ecbProvider',
+      // TODO verify proto project location
+      protoPath: join(__dirname, '../proto/ecb-provider.proto'),
+      url: '0.0.0.0:50052',
+    },
+  });
 
   await app.startAllMicroservices();
-  console.log(app.getMicroservices())
-
-
+  // TODO add swagger
   // const config = new DocumentBuilder()
   //   .setTitle('GRPC example')
   //   .setDescription('The GRPC API description')
@@ -39,10 +36,9 @@ async function bootstrap() {
   // const document = SwaggerModule.createDocument(app, config);
   // SwaggerModule.setup('api', app, document);
 
+  console.log(app.getMicroservices())
+
   await app.listen(3001);
   console.log(`Application is running on: ${await app.getUrl()}`);
-
-  console.log('running somewhere')
-  // await app.listen();
 }
 bootstrap();

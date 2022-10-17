@@ -28,12 +28,8 @@ export class HeroController {
 
   @Get('/hero')
   getHello(): Hero {
-    console.log('http in')
     const $hero = this.heroClientService.FindOne({ id: 1 });
-    console.log($hero)
     const firstNumber = firstValueFrom($hero as unknown as Observable<Hero>);
-    console.log(firstNumber)
-
     return firstNumber as unknown as Hero
   }
 }
