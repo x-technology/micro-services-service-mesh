@@ -24,6 +24,16 @@ async function bootstrap() {
     },
   });
 
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.GRPC,
+    options: {
+      package: 'currencyConverter',
+      // TODO verify proto project location
+      protoPath: join(__dirname, '../proto/currency-converter.proto'),
+      url: '0.0.0.0:50053',
+    },
+  });
+
   await app.startAllMicroservices();
   // TODO add swagger
   // const config = new DocumentBuilder()
